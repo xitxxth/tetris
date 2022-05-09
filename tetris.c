@@ -597,15 +597,26 @@ int recommend(Leaf_pointer prev){
 int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
+char originField[HEIGHT][WIDTH];
 rec=0;
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
 acc_score = 0;
+for(i=0; i<HEIGHT; i++){
+	for(j=0; j<WIDTH; j++){
+		originField[i][j] = field[i][j];
+	}
+}	
 }
 else{
 curr->level = prev->level + 1;
 acc_score = prev->accumulatedScore;
+for(i=0; i<HEIGHT; i++){
+	for(j=0; j<WIDTH; j++){
+		originField[i][j] = prev->recField[i][j];
+	}
+}	
 }
 curr->curBlockID = nextBlock[curr->level];
 
@@ -623,12 +634,12 @@ for(i=0; i<HEIGHT; i++){
 }		ONE:
 		if(x==WIDTH+1)	break;
 		y=0;
-		while(CheckToMove(field, curr->curBlockID, rotate, ++y, x));	y--;
-		if(!CheckToMove(field, curr->curBlockID, rotate, y, x)){
+		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x));	y--;
+		if(!CheckToMove(originField, curr->curBlockID, rotate, y, x)){
 			x++;
 			goto ONE;
 		}
-		else if(CheckToMove(field, curr->curBlockID, rotate, y, x)){
+		else if(CheckToMove(originField, curr->curBlockID, rotate, y, x)){
 		curr->accumulatedScore = AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1){
@@ -639,12 +650,14 @@ for(i=0; i<HEIGHT; i++){
 					recommendR=rotate;
 					recommendX=x;
 					recommendY=y;
+					rec=1;
 				}
 			}
 		}
 		else if(curr->level==VISIBLE_BLOCKS-1){
 		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;
+			rec=1;
 		}
 		}
 		}
