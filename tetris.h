@@ -18,7 +18,7 @@
 #define BLOCK_HEIGHT	4
 #define BLOCK_WIDTH	4
 #define BLOCK_NUM	3
-#define VISIBLE_BLOCKS	2
+#define VISIBLE_BLOCKS	3
 // menu number
 #define MENU_PLAY '1'
 #define MENU_RANK '2'
@@ -157,6 +157,7 @@ int timed_out;
 int recommendR,recommendY,recommendX; // 추천 블럭 배치 정보. 차례대로 회전, Y 좌표, X 좌표
 int size_rank=0;
 int rec;
+int swip=0;
 Node_pointer HEAD = NULL;
 
 /***********************************************************
