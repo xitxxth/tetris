@@ -586,8 +586,10 @@ void newRank(int score){
 
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
+	if(rec==1){
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
+	}
 	return;
 }
 
@@ -595,9 +597,7 @@ int recommend(Leaf_pointer prev){
 int max=0;
 int acc_score;
 int rotate, x, y, i, j;
-recommendR = 3;
-recommendX = 5;
-recommendY = 5;
+rec=0;
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
@@ -636,6 +636,7 @@ for(i=0; i<HEIGHT; i++){
 			recommendR = rotate;
 			recommendX = x;
 			recommendY = y;
+			rec=1;
 		}
 		}
 	}
