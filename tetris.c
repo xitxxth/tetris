@@ -625,6 +625,7 @@ for(i=0; i<HEIGHT; i++){
 			x++;
 			goto ONE;
 		}
+		else if(CheckToMove(field, curr->curBlockID, rotate, y, x)){
 		curr->accumulatedScore = AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(max < curr->accumulatedScore){
@@ -632,6 +633,7 @@ for(i=0; i<HEIGHT; i++){
 			recommendR = rotate;
 			recommendX = x;
 			recommendY = y;
+		}
 		}
 	}
 }	
