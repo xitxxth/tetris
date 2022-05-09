@@ -19,8 +19,7 @@ int main(){
 		case MENU_RANK: rank();	break;
 		case MENU_EXIT: exit=1; break;
 		default: break;
-		if(RecRoot!=NULL)	free(RecRoot);
-		}
+
 	}
 	writeRankFile();
 	endwin();
@@ -38,7 +37,7 @@ void InitTetris(){
 	nextBlock[0]=rand()%7; // 0 1 2 3 4 5 6, curr block
 	nextBlock[1]=rand()%7; // 0 1 2 3 4 5 6, next block
 	nextBlock[2]=rand()%7;
-	recommend(RecRoot);//fixed
+	recommend(NULL);//fixed
 	blockRotate=0;
 	blockY=-1; //realize at the roof
 	blockX=WIDTH/2-2; //realize at the center of the roof
@@ -353,11 +352,7 @@ timed_out=0;//for next call(alarm call)
 		blockY = -1; 
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
-		if(RecRoot)	free(RecRoot);
-		RecRoot = (Leaf_pointer)malloc(sizeof(Leaf));
-		RecRoot->level = -1;
-		RecRoot->accumulatedScore = 0;
-		recommend(RecRoot);
+		recommend(NULL);
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
@@ -632,8 +627,7 @@ for(i=0; i<HEIGHT; i++){
 			recommendR = rotate;
 			recommendX = x;
 			recommendY = y;
-			RecRoot->curBlockID = curr->curBlockID;
-			time++;
+
 		}
 	}
 }	
@@ -647,7 +641,7 @@ void recommendedPlay(){
 }
 
 void DrawBlockWithFeatures(int y, int x, int blockID, int blockRotate){
-	if(RecRoot!=NULL)DrawRecommend(RecRoot->recBlockY, RecRoot->recBlockX, RecRoot->curBlockID, RecRoot->recBlockRotate);
+	DrawRecommend(y, x, blockID, blockRotate);
 	DrawBlock(y, x, blockID, blockRotate, ' ');//draw the block
 	DrawShadow(y, x, blockID, blockRotate);//draw the shadow
 	return;

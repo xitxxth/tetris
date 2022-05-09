@@ -157,8 +157,6 @@ int timed_out;
 int recommendR,recommendY,recommendX; // 추천 블럭 배치 정보. 차례대로 회전, Y 좌표, X 좌표
 int size_rank=0;
 Node_pointer HEAD = NULL;
-Leaf_pointer RecRoot = NULL;
-
 
 /***********************************************************
  *	테트리스의 모든  global 변수를 초기화 해준다.
