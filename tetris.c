@@ -589,8 +589,8 @@ void newRank(int score){
 
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
-	DrawBlock(y, x, blockID, blockRotate, ' ');
-	DrawBlock(y, x, blockID, blockRotate, 'R');
+	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
+	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	return;
 }
 
@@ -611,7 +611,7 @@ curr->accumulatedScore = prev->accumulatedScore;
 	else	rotate=0;
 
 for(; rotate<4; rotate++){
-	for(x=-1; x<=WIDTH; x++){
+	for(x=-2; x<=WIDTH; x++){
 
 for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
@@ -625,9 +625,9 @@ for(i=0; i<HEIGHT; i++){
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;
-			RecRoot->recBlockRotate = rotate;
-			RecRoot->recBlockX = x;
-			RecRoot->recBlockY = y;
+			recommendR = rotate;
+			recommendX = x;
+			recommendY = y;
 			RecRoot->curBlockID = curr->curBlockID;
 			time++;
 		}
