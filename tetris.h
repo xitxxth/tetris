@@ -364,6 +364,4 @@ int recommend(Leaf_pointer root);
  ***********************************************************/
 void recommendedPlay();
 void DrawBlockWithFeatures(int y, int x, int blockID, int blockRotate);
-#endif
-
 void DrawRecommend(int y, int x, int blockID,int blockRotate);
