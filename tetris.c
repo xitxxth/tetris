@@ -329,7 +329,6 @@ void DrawChange(char f[HEIGHT][WIDTH],int command,int currentBlock,int blockRota
 void BlockDown(int sig){//if get sig
 int x, y;
 	// user code
-timed_out=0;//for next call(alarm call)
 	if(CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
         DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, ++blockY, blockX);//drop it
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
@@ -359,6 +358,7 @@ timed_out=0;//for next call(alarm call)
 		//initialize current block location(drop end), Drawfield()
 		DrawField();//draw field
 	}
+	timed_out=0;//for next call(alarm call)
 return;//강의자료 p26-27의 플로우차트를 참고한다.
 }
 
