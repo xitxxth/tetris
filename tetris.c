@@ -264,7 +264,7 @@ int CheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int bloc
 	for(i=0; i<4; i++){
 		for(j=0; j<4; j++){
 			if(block[currentBlock][blockRotate][i][j]==1){ //check if block exists(value==1)
-				if(i+blockY>=HEIGHT || i+blockY<0 || j+blockX>=WIDTH || j+blockX<0)//does it break the rule?
+				if(i+blockY>=HEIGHT || j+blockX>=WIDTH || j+blockX<0)//does it break the rule?
 				return 0;
 				if(f[i+blockY][j+blockX]==1)//the target place is already filled with block
 				return 0;
@@ -611,7 +611,7 @@ curr->curBlockID = nextBlock[curr->level];
 	else	rotate=0;
 
 for(; rotate<4; rotate++){
-	for(x=-2; x<=WIDTH; x++){
+	for(x=-2; x<=WIDTH+1; x++){
 
 for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
