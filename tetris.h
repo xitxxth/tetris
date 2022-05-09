@@ -35,7 +35,7 @@ struct Node {
 	struct Node* link;
 };
 
-typedef struct _Leaf {
+typedef struct Leaf {
 //must-have elements
 int level;
 int accumulatedScore;
