@@ -595,6 +595,9 @@ int recommend(Leaf_pointer prev){
 int max=0;
 int acc_score;
 int rotate, x, y, i, j;
+recommendR = 3;
+recommendX = 5;
+recommendY = 5;
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
