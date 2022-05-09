@@ -625,14 +625,14 @@ curr->curBlockID = nextBlock[curr->level];
 	else	rotate=0;
 
 for(; rotate<4; rotate++){
-	for(x=-1; x<=WIDTH; x++){
+	for(x=-1; x<=WIDTH+1; x++){
 
 for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
 		curr->recField[i][j] = field[i][j];
 	}
 }		ONE:
-		if(x==WIDTH)	break;
+		if(x==WIDTH+2)	break;
 		y=0;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x));	y--;
 		if(!CheckToMove(originField, curr->curBlockID, rotate, y, x)){
