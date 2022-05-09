@@ -625,15 +625,13 @@ for(i=0; i<HEIGHT; i++){
 			x++;
 			goto ONE;
 		}
-		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
+		curr->accumulatedScore = AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;
 			recommendR = rotate;
 			recommendX = x;
 			recommendY = y;
-			tile2 = '@';
-
 		}
 	}
 }	
