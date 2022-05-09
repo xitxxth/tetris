@@ -637,6 +637,7 @@ for(i=0; i<HEIGHT; i++){
 	return max;
 }
 //lv 0 complete
+//1. 전역변수 2. leaf point -> leaf
 void recommendedPlay(){
 	// user code
 }
