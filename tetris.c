@@ -38,6 +38,7 @@ void InitTetris(){
 	nextBlock[0]=rand()%7; // 0 1 2 3 4 5 6, curr block
 	nextBlock[1]=rand()%7; // 0 1 2 3 4 5 6, next block
 	nextBlock[2]=rand()%7;
+	recommend(RecRoot);//fixed
 	blockRotate=0;
 	blockY=-1; //realize at the roof
 	blockX=WIDTH/2-2; //realize at the center of the roof
@@ -590,7 +591,7 @@ void newRank(int score){
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
-	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
+	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
 	return;
 }
 
