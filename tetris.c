@@ -588,7 +588,6 @@ void newRank(int score){
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
 	if(rec==1){
-		recommendY=rand()%6;
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
 	}
