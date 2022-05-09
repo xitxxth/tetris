@@ -21,6 +21,7 @@ int main(){
 		default: break;
 
 	}
+	}
 	writeRankFile();
 	endwin();
 	system("clear");
