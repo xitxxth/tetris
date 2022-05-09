@@ -617,10 +617,14 @@ for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
 		curr->recField[i][j] = field[i][j];
 	}
-}
+}		ONE:
+		if(x==WIDTH+1)	break;
 		y=0;
 		while(CheckToMove(field, curr->curBlockID, rotate, ++y, x));	y--;
-		if(!CheckToMove(field, curr->curBlockID, rotate, y, x))	break;
+		if(!CheckToMove(field, curr->curBlockID, rotate, y, x)){
+			x++;
+			goto ONE;
+		}
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(max < curr->accumulatedScore){
@@ -628,6 +632,7 @@ for(i=0; i<HEIGHT; i++){
 			recommendR = rotate;
 			recommendX = x;
 			recommendY = y;
+			tile2 = '@';
 
 		}
 	}
