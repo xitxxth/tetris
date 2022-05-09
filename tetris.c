@@ -625,8 +625,8 @@ curr->curBlockID = nextBlock[curr->level];
 	else if(curr->curBlockID==0 || curr->curBlockID==5 || curr->curBlockID==6)	rotate=2;
 	else	rotate=0;
 
-for(; rotate<4; rotate++){
-	for(x=-1; x<=WIDTH+1; x++){
+for(rotate=0; rotate<4; rotate++){
+	for(x=-3; x<WIDTH; x++){
 
 for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
@@ -643,23 +643,15 @@ for(i=0; i<HEIGHT; i++){
 		else if(CheckToMove(originField, curr->curBlockID, rotate, y, x)){
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
-		if(curr->level<VISIBLE_BLOCKS-1){
-			tmp = recommend(curr);
-			if(tmp > max && swip==1){
-				max = tmp;
-				if(curr->level==0){
-					recommendR=rotate;
-					recommendX=x;
-					recommendY=y;
-					rec=1;
-				}
-			}
-		}
-		else if(curr->level==VISIBLE_BLOCKS-1){
+		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore=recommend(curr);
 		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;
+			if(curr->level==0){
+				recommendY = y;
+				recommendX = x;
+				recommendR = rotate;
+			}
 			rec=1;
-		}
 		}
 		}
 	}
