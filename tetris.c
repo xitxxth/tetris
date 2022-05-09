@@ -588,6 +588,7 @@ void newRank(int score){
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
 	if(rec==1){
+		recommendY=rand()%6;
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
 	}
@@ -645,7 +646,7 @@ for(i=0; i<HEIGHT; i++){
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1){
 			tmp = recommend(curr);
-			if(tmp > max && siwp==1){
+			if(tmp > max && swip==1){
 				max = tmp;
 				if(curr->level==0){
 					recommendR=rotate;
