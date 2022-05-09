@@ -597,16 +597,19 @@ void DrawRecommend(int y, int x, int blockID,int blockRotate){
 
 int recommend(Leaf_pointer prev){
 int max=0;
-int time = 0;
+int acc_score;
 int rotate, x, y, i, j;
-RecRoot->recBlockRotate = 0;
-RecRoot->recBlockX = 5;
-RecRoot->recBlockY = 5;
-char origin_Field[HEIGHT][WIDTH];
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
+if(prev==NULL){
+curr->level = 0;
+acc_score = 0;
+}
+else{
 curr->level = prev->level + 1;
+acc_score = prev->accumulatedScore;
+}
 curr->curBlockID = nextBlock[curr->level];
-curr->accumulatedScore = prev->accumulatedScore;
+
 	if(curr->curBlockID==4)	rotate=3;
 	else if(curr->curBlockID==0 || curr->curBlockID==5 || curr->curBlockID==6)	rotate=2;
 	else	rotate=0;
@@ -622,7 +625,7 @@ for(i=0; i<HEIGHT; i++){
 		y=0;
 		while(CheckToMove(field, curr->curBlockID, rotate, ++y, x));	y--;
 		if(!CheckToMove(field, curr->curBlockID, rotate, y, x))	break;
-		curr->accumulatedScore = prev->accumulatedScore + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
+		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;

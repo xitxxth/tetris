@@ -35,17 +35,13 @@ struct Node {
 	struct Node* link;
 };
 
-typedef struct Leaf {
+typedef struct _Leaf {
 //must-have elements
 int level;
 int accumulatedScore;
 char recField[HEIGHT][WIDTH];
-struct Leaf **child;
-int num_child;
 //optional element
 int curBlockID;
-int recBlockX, recBlockY, recBlockRotate;
-struct Leaf *parent;
 } Leaf;
 typedef struct Leaf* Leaf_pointer;
 typedef struct Node* Node_pointer;
@@ -162,6 +158,7 @@ int recommendR,recommendY,recommendX; // 추천 블럭 배치 정보. 차례대�
 int size_rank=0;
 Node_pointer HEAD = NULL;
 Leaf_pointer RecRoot = NULL;
+
 
 /***********************************************************
  *	테트리스의 모든  global 변수를 초기화 해준다.
