@@ -594,7 +594,7 @@ void DrawRecommend(int y, int x, int blockID,int blockRotate){
 }
 
 int recommend(Leaf_pointer prev){
-int max=0;
+int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
 rec=0;
@@ -631,12 +631,21 @@ for(i=0; i<HEIGHT; i++){
 		else if(CheckToMove(field, curr->curBlockID, rotate, y, x)){
 		curr->accumulatedScore = AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
+		if(curr->level<VISIBLE_BLOCKS-1){
+			tmp = recommend(curr);
+			if(tmp > max){
+				max = tmp;
+				if(curr->level==0){
+					recommendR=rotate;
+					recommendX=x;
+					recommendY=y;
+				}
+			}
+		}
+		else if(curr->level==VISIBLE_BLOCKS-1){
 		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;
-			recommendR = rotate;
-			recommendX = x;
-			recommendY = y;
-			rec=1;
+		}
 		}
 		}
 	}
