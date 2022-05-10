@@ -642,7 +642,7 @@ for(i=0; i<HEIGHT; i++){
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore=recommend(curr);
-		//if(max < curr->accumulatedScore){
+		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;
 			if(curr->level==0){
 				recommendY = y;
@@ -650,7 +650,7 @@ for(i=0; i<HEIGHT; i++){
 				recommendR = rotate;
 				tile2='3';
 			}
-		//}
+		}
 		
 	}
 }	
