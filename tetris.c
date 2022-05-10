@@ -633,15 +633,10 @@ for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
 		curr->recField[i][j] = field[i][j];
 	}
-}		ONE:
+}
 		if(x==WIDTH)	break;
 		y=0;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x));	y--;
-		if(!CheckToMove(originField, curr->curBlockID, rotate, y, x)){
-			x++;
-			goto ONE;
-		}
-		else if(CheckToMove(originField, curr->curBlockID, rotate, y, x)){
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore=recommend(curr);
@@ -655,7 +650,7 @@ for(i=0; i<HEIGHT; i++){
 			
 			rec=1;
 		}
-		}
+		
 	}
 }	
 	free(curr);
