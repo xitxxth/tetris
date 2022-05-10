@@ -354,6 +354,7 @@ int x, y;
 		blockRotate = 0;//make new block
 		tile2='2';
 		recommend(NULL);
+		rec=1;
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
@@ -599,7 +600,6 @@ int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
 char originField[HEIGHT][WIDTH];
-rec=0;
 tile2='4';
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
@@ -647,7 +647,6 @@ for(i=0; i<HEIGHT; i++){
 				recommendX = x;
 				recommendR = rotate;
 				tile2='3';
-				rec=1;
 			}
 		}
 		
