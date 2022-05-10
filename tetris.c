@@ -631,7 +631,7 @@ for(rotate=0; rotate<4; rotate++){
 
 for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
-		curr->recField[i][j] = field[i][j];
+		curr->recField[i][j] = originField[i][j];
 	}
 }
 		y=0;
@@ -639,7 +639,7 @@ for(i=0; i<HEIGHT; i++){
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore=recommend(curr);
-		if(max < curr->accumulatedScore){
+		if(max < curr->accumulatedScore){//problem
 			max = curr->accumulatedScore;
 			if(curr->level==0){
 				recommendY = y;
