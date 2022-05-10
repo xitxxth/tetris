@@ -333,6 +333,7 @@ void BlockDown(int sig){//if get sig
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
 	}
 	else{
+		int i;
 		//gameover
 		if(blockY==-1){ //!(check to move) && blockY==-1 -> game0ver 
 			gameOver=1;
@@ -585,8 +586,10 @@ void newRank(int score){
 
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
+	if(CheckToMove(field, blockID, recommendR, recommendY, recommendX)==1){
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
+	}
 	return;
 }
 
