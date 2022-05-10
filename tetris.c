@@ -352,9 +352,6 @@ int x, y;
 		blockY = -1; 
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
-		tile2='2';
-		recommend(NULL);
-		rec=1;
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
@@ -588,10 +585,9 @@ void newRank(int score){
 
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
-	if(rec==1){
+	recommend(NULL);
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	DrawBlock(recommendY, recommendX, blockID, recommendR, tile2);
-	}
 	return;
 }
 
