@@ -38,10 +38,10 @@ void InitTetris(){
 	nextBlock[0]=rand()%7; // 0 1 2 3 4 5 6, curr block
 	nextBlock[1]=rand()%7; // 0 1 2 3 4 5 6, next block
 	nextBlock[2]=rand()%7;
-	recommend(NULL);//fixed
 	blockRotate=0;
 	blockY=-1; //realize at the roof
 	blockX=WIDTH/2-2; //realize at the center of the roof
+	recommend(NULL);//fixed
 	score=0;//score reset
 	gameOver=0;//game0ver==1 -> over
 	timed_out=0;//used at blockdown()
@@ -327,7 +327,6 @@ void DrawChange(char f[HEIGHT][WIDTH],int command,int currentBlock,int blockRota
 }
 
 void BlockDown(int sig){//if get sig
-int x, y;
 	// user code
 	if(CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
         DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, ++blockY, blockX);//drop it
@@ -594,7 +593,7 @@ void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	return;
 }
 
-int recommend(Leaf_pointer prev){
+int  recommend(Leaf_pointer prev){
 int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
@@ -604,20 +603,16 @@ Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
 acc_score = 0;
-for(i=0; i<HEIGHT; i++){
-	for(j=0; j<WIDTH; j++){
+for(i=0; i<HEIGHT; i++)
+	for(j=0; j<WIDTH; j++)
 		originField[i][j] = field[i][j];
-	}
-}	
 }
 else{
 curr->level = prev->level + 1;
 acc_score = prev->accumulatedScore;
-for(i=0; i<HEIGHT; i++){
-	for(j=0; j<WIDTH; j++){
+for(i=0; i<HEIGHT; i++)
+	for(j=0; j<WIDTH; j++)
 		originField[i][j] = prev->recField[i][j];
-	}
-}	
 }
 curr->curBlockID = nextBlock[curr->level];
 
@@ -628,13 +623,12 @@ curr->curBlockID = nextBlock[curr->level];
 for(rotate=0; rotate<4; rotate++){
 	for(x=-1; x<WIDTH; x++){
 
-for(i=0; i<HEIGHT; i++){
-	for(j=0; j<WIDTH; j++){
+for(i=0; i<HEIGHT; i++)
+	for(j=0; j<WIDTH; j++)
 		curr->recField[i][j] = originField[i][j];
-	}
-}
 		y=0;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x));	y--;
+		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==1){
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore=recommend(curr);
@@ -647,7 +641,7 @@ for(i=0; i<HEIGHT; i++){
 				tile2='3';
 			}
 		}
-		
+		}
 	}
 }	
 	free(curr);
