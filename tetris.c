@@ -628,7 +628,7 @@ curr->curBlockID = nextBlock[curr->level];
 
 for(rotate=0; rotate<4; rotate++){
 	for(x=-1; x<WIDTH; x++){
-		while(!CheckToMove(originField, curr->curBlockID, rotate, 0, x))	x++;
+		while(!CheckToMove(originField, curr->curBlockID, rotate, 0, ++x));
 		if(x==WIDTH)	break;
 for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
