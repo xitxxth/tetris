@@ -586,6 +586,13 @@ void newRank(int score){
 
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
+	int try=0;
+	if(CheckToMove(field, blockID, recommendR, recommendY, recommendX)==0){
+		while(1){
+			recommend(NULL);	try++;
+			if(CheckToMove(field, blockID, recommendR, recommendY, recommendX)==1 || try=4)	break;
+		}
+	}
 	if(CheckToMove(field, blockID, recommendR, recommendY, recommendX)==1){
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
