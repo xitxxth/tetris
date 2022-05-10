@@ -352,7 +352,6 @@ void BlockDown(int sig){//if get sig
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
 		recommend(NULL);
-		rec=1;
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
@@ -586,10 +585,8 @@ void newRank(int score){
 
 void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
-	if(rec==1){
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
 	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
-	}
 	return;
 }
 
@@ -642,7 +639,7 @@ for(i=0; i<HEIGHT; i++)
 		
 	}
 }	
-	free(curr);
+	//free(curr);
 	return max;
 }
 //lv 0 complete
