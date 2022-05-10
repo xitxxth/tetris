@@ -370,7 +370,7 @@ int AddBlockToField(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int 
 		for(j=0; j<4; j++){
 			if(block[currentBlock][blockRotate][i][j]==1){//turn block
                 f[blockY+i][blockX+j] = 1;//into field
-                if(i + blockY + 1 == HEIGHT) {touched++; swip=1;}//Y_pos ==21 : the bottom of field
+                if(i + blockY + 1 == HEIGHT) {touched++;}//Y_pos ==21 : the bottom of field
 				//if the block turns into field on the bottom, score += 10
             }
 		}
@@ -387,7 +387,6 @@ int DeleteLine(char f[HEIGHT][WIDTH]){
 		}
 		if(j==WIDTH){
 			count++;
-			swip=1;
 			for(y=i; y>0; y--){
 				for(x=0; x<WIDTH; x++){
 					f[y][x] = f[y-1][x];
@@ -599,11 +598,9 @@ int recommend(Leaf_pointer prev){
 int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
-recommendR =0;
-recommendX = 5;
-recommendY = 5;
 char originField[HEIGHT][WIDTH];
-rec=0, swip=0;
+rec=0;
+tile2='4';
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
@@ -650,8 +647,8 @@ for(i=0; i<HEIGHT; i++){
 				recommendX = x;
 				recommendR = rotate;
 				tile2='3';
+				rec=1;
 			}
-			rec=1;
 		}
 		
 	}
