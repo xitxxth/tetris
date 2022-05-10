@@ -628,13 +628,13 @@ curr->curBlockID = nextBlock[curr->level];
 
 for(rotate=0; rotate<4; rotate++){
 	for(x=-1; x<WIDTH; x++){
-
+		while(!CheckToMove(originField, curr->curBlockID, rotate, 0, x))	x++;
+		if(x==WIDTH)	break;
 for(i=0; i<HEIGHT; i++){
 	for(j=0; j<WIDTH; j++){
 		curr->recField[i][j] = field[i][j];
 	}
 }
-		if(x==WIDTH)	break;
 		y=0;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x));	y--;
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
