@@ -588,7 +588,7 @@ void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
 	if(rec==1){
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
-	DrawBlock(recommendY, recommendX, blockID, recommendR, tile2);
+	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
 	}
 	return;
 }
@@ -598,7 +598,6 @@ int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
 char originField[HEIGHT][WIDTH];
-tile2='4';
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
@@ -638,7 +637,6 @@ for(i=0; i<HEIGHT; i++)
 				recommendY = y;
 				recommendX = x;
 				recommendR = rotate;
-				tile2='3';
 			}
 		}
 		
@@ -654,8 +652,8 @@ void recommendedPlay(){
 }
 
 void DrawBlockWithFeatures(int y, int x, int blockID, int blockRotate){
-	DrawRecommend(y, x, blockID, blockRotate);
 	DrawBlock(y, x, blockID, blockRotate, ' ');//draw the block
 	DrawShadow(y, x, blockID, blockRotate);//draw the shadow
+	DrawRecommend(y, x, blockID, blockRotate);
 	return;
 }
