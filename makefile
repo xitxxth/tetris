@@ -2,4 +2,4 @@
 	gcc tetris.c -lncurses
 
 clean:
-	rm a.out *.o2
+	rm a.out *.o

@@ -1,7 +1,7 @@
 ﻿#include "tetris.h"
 #include <stdlib.h>
 #include <stdio.h>
-//s
+//s	
 static struct sigaction act, oact;
 int main(){
 	int exit=0;
@@ -352,6 +352,7 @@ int x, y;
 		blockY = -1; 
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
+		tile2='2';
 		recommend(NULL);
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
@@ -589,7 +590,7 @@ void DrawRecommend(int y, int x, int blockID,int blockRotate){
 	// user code
 	if(rec==1){
 	DrawBlock(recommendY, recommendX, blockID, recommendR, ' ');
-	DrawBlock(recommendY, recommendX, blockID, recommendR, 'R');
+	DrawBlock(recommendY, recommendX, blockID, recommendR, tile2);
 	}
 	return;
 }
@@ -650,6 +651,7 @@ for(i=0; i<HEIGHT; i++){
 				recommendY = y;
 				recommendX = x;
 				recommendR = rotate;
+				tile2='3';
 			}
 			rec=1;
 		}
