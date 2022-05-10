@@ -599,6 +599,9 @@ int recommend(Leaf_pointer prev){
 int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
+recommendR =0;
+recommendX = 5;
+recommendY = 5;
 char originField[HEIGHT][WIDTH];
 rec=0, swip=0;
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
