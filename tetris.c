@@ -627,11 +627,11 @@ for(i=0; i<HEIGHT; i++)
 	for(j=0; j<WIDTH; j++)
 		curr->recField[i][j] = originField[i][j];
 		y=0;
-		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x));	y--;
-		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==1){
+		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
+		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
-		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore=recommend(curr);
+		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=recommend(curr);
 		if(max < curr->accumulatedScore){//problem
 			max = curr->accumulatedScore;
 			if(curr->level==0){
@@ -641,7 +641,7 @@ for(i=0; i<HEIGHT; i++)
 				tile2='3';
 			}
 		}
-		}
+		
 	}
 }	
 	free(curr);
