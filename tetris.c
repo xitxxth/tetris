@@ -647,12 +647,12 @@ for(i=0; i<HEIGHT; i++){
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore=recommend(curr);
 		if(max < curr->accumulatedScore){
 			max = curr->accumulatedScore;
-			if(curr->level==0){
+			
 				recommendY = y;
 				recommendX = x;
 				recommendR = rotate;
 				tile2='3';
-			}
+			
 			rec=1;
 		}
 		}

@@ -28,7 +28,7 @@
 #define NAMELEN 16
 
 #define CHILDREN_MAX 36
-
+char tile2 = '1';
 struct Node {
 	char name[40];
 	int point;
