@@ -600,7 +600,7 @@ int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
 char originField[HEIGHT][WIDTH];
-rec=0, swip=0;
+rec=0, swip=0, tile2='2';
 Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
