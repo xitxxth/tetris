@@ -24,7 +24,7 @@
 #define MENU_RANK '2'
 #define MENU_RECOMMEND '3'
 #define MENU_EXIT '4'
-
+//
 // 사용자 이름의 길이
 #define NAMELEN 16
 
