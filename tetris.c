@@ -17,6 +17,7 @@ int main(){
 		switch(menu()){
 		case MENU_PLAY: play(); break;
 		case MENU_RANK: rank();	break;
+		case MENU_RECOMMEND: recommendedPlay();	break;
 		case MENU_EXIT: exit=1; break;
 		default: break;
 
@@ -126,6 +127,18 @@ int ProcessCommand(int command){
 	if(drawFlag){
 		DrawChange(field,command,nextBlock[0],blockRotate,blockY,blockX);
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DrawChange: erase, DBWF: draw shadow + blocks
+	}
+	return ret;	
+}
+
+int QuitCommand(int command){
+	int ret=1; //output, program quit == QUIT or 'q', cf) tetris.h
+	switch(command){
+	case QUIT:
+		ret = QUIT;
+		break;
+	default:
+		break;
 	}
 	return ret;	
 }
@@ -642,13 +655,45 @@ for(i=0; i<HEIGHT; i++)
 		
 	}
 }	
-	//free(curr);
+	free(curr);
 	return max;
 }
 //lv 0 complete
 //1. 전역변수 2. leaf point -> leaf
 void recommendedPlay(){
-	// user code
+		int command;
+	clear();
+	act.sa_handler = BlockDown;
+	sigaction(SIGALRM,&act,&oact);
+	InitTetris();
+	do{
+		if(timed_out==0){
+			alarm(1);
+			timed_out=1;
+		}
+
+		command = GetCommand();
+		if(QuitCommand(command)==QUIT){
+			alarm(0);
+			DrawBox(HEIGHT/2-1,WIDTH/2-5,1,10);
+			move(HEIGHT/2,WIDTH/2-4);
+			printw("Good-bye!!");
+			refresh();
+			getch();
+
+			return;
+		}
+	}while(!gameOver);
+
+	alarm(0);
+	getch();
+	DrawBox(HEIGHT/2-1,WIDTH/2-5,1,10);
+	move(HEIGHT/2,WIDTH/2-4);
+	printw("GameOver!!");
+	refresh();
+	getch();
+	newRank(score);
+
 }
 
 void DrawBlockWithFeatures(int y, int x, int blockID, int blockRotate){

@@ -954,7 +954,7 @@ int modified_recommend(Tree *Root)
 			else
 			{
 				continue;
-			}
+			}//
 		}
 	}
 	if (i != 0) // 블록을 놓을 수 있는 위치가 존재하는 경우

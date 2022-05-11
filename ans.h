@@ -454,7 +454,7 @@ void traverseList(int x, int y);
  *		  (int) 블록의 회전 횟수
  *	return	: none
  ***********************************************************/
-void DrawRecommend(int y, int x, int blockID, int blockRotate);
+void DrawRecommend(int y, int x, int blockID, int blockRotate);//
 
 /***********************************************************
  *	블록의 추천 위치의 y 좌표를 반환한다.
