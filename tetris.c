@@ -668,7 +668,7 @@ void recommendedPlay(){
 	InitTetris();
 	do{
 		if(timed_out==0){
-			alarm(1);
+			alarm(0.5);
 			timed_out=1;
 		}
 
