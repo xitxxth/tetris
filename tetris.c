@@ -375,6 +375,68 @@ void BlockDown(int sig){//if get sig
 return;//강의자료 p26-27의 플로우차트를 참고한다.
 }
 
+void RecBlockDown(int sig){//if get sig
+	// user code
+	
+	while(blockRotate!=recommendR){
+		blockRotate++;
+		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
+		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
+		Sleep(50);
+	}
+	if(blockX>recommendX){
+		while(blockX!=recommendX){
+		blockX--;
+		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
+		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
+		Sleep(50);
+		}
+	}
+	else if(blockX<recommendX){
+		while(blockX!=recommendX){
+		blockX++;
+		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
+		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
+		Sleep(50);
+		}
+	}
+	while(blockY!=recommendY){
+		blockY++;
+		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
+		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
+		Sleep(50);
+	}
+
+	if(!CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
+		int i;
+		//gameover
+		if(blockY==-1){ //!(check to move) && blockY==-1 -> game0ver 
+			gameOver=1;
+		}
+		//add block
+		score += AddBlockToField(field, nextBlock[0], blockRotate, blockY, blockX); //turn block to field
+		//check deleting line
+		score += DeleteLine(field);//count score
+		//print score
+		PrintScore(score);//print score
+		//bring new block
+		nextBlock[0] = nextBlock[1];//bring next block
+		//make new block
+		nextBlock[1] = nextBlock[2];//bring next block
+        nextBlock[2] = rand()%7;//make new block_2
+		blockY = -1; 
+		blockX = (WIDTH/2)-2;
+		blockRotate = 0;//make new block
+		recommend(NULL);
+		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);
+		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
+		//initialize current block location(drop end), Drawfield()
+		DrawField();//draw field
+	}
+	timed_out=0;//for next call(alarm call)
+return;//강의자료 p26-27의 플로우차트를 참고한다.
+}
+
 int AddBlockToField(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int blockY, int blockX){
 	// user code
 	int i, j, touched = 0;
@@ -663,12 +725,12 @@ for(i=0; i<HEIGHT; i++)
 void recommendedPlay(){
 		int command;
 	clear();
-	act.sa_handler = BlockDown;
+	act.sa_handler = RecBlockDown;
 	sigaction(SIGALRM,&act,&oact);
 	InitTetris();
 	do{
 		if(timed_out==0){
-			alarm(0.5);
+			alarm(1);
 			timed_out=1;
 		}
 
@@ -684,7 +746,6 @@ void recommendedPlay(){
 			return;
 		}
 	}while(!gameOver);
-
 	alarm(0);
 	getch();
 	DrawBox(HEIGHT/2-1,WIDTH/2-5,1,10);
