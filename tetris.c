@@ -454,7 +454,7 @@ blockRotate=recommendR;
 		blockY = -1; 
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
-		recommend(NULL);
+		Mrecommend(NULL);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
 		DrawField();//draw field
@@ -852,7 +852,7 @@ for(; rotate<4; rotate++){
 			x=-1;
 			lim=WIDTH-3;
 		}
-		else if(roate==3){
+		else if(rotate==3){
 			x=-1;
 			lim=WIDTH-2;
 		}
@@ -874,11 +874,11 @@ for(i=0; i<HEIGHT; i++)
 	for(j=0; j<WIDTH; j++)
 		curr->recField[i][j] = originField[i][j];
 		y=0;
-		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
-		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
+		while(MCheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
+		if(MCheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
-		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=recommend(curr);
+		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=Mrecommend(curr);
 		if(max < curr->accumulatedScore){//problem
 			max = curr->accumulatedScore;
 			if(curr->level==0){
