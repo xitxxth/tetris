@@ -722,6 +722,7 @@ for(i=0; i<HEIGHT; i++)
 	}
 }	
 	free(curr);
+	curr=NULL;
 	return max;
 }
 //lv 0 complete
