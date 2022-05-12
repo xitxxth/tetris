@@ -454,7 +454,7 @@ blockRotate=recommendR;
 		blockY = -1; 
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
-		Mrecommend(NULL);
+		recommend(NULL);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
 		DrawField();//draw field
@@ -893,6 +893,7 @@ for(i=0; i<HEIGHT; i++)
 		while(MCheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
 		if(MCheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
 		if(curr->level==VISIBLE_BLOCKS-1 && curr->condition_height>=VISIBLE_BLOCKS*3)	continue;
+		//averge:2.4
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=Mrecommend(curr);
@@ -948,7 +949,7 @@ void recommendedPlay(){
 	printw("GameOver!!");
 	printw("\nScore: %d", score);
 	printw("\nTime: %lf", total);
-	prntw("\nMemory: %ld", total_memory_usage);
+	printw("\nMemory: %ld", total_memory_usage);
 	printw("\n%lf", (double)score/total);
 	printw("\n%lf", (double)score/total_memory_usage);
 	refresh();
