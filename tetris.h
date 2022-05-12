@@ -19,7 +19,7 @@
 #define BLOCK_HEIGHT	4
 #define BLOCK_WIDTH	4
 #define BLOCK_NUM	3
-#define VISIBLE_BLOCKS	2
+#define VISIBLE_BLOCKS	3
 #define INTERVAL 50000
 // menu number
 #define MENU_PLAY '1'

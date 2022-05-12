@@ -706,10 +706,7 @@ for(i=0; i<HEIGHT; i++)
 		curr->recField[i][j] = originField[i][j];
 		y=-1;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
-		if(!CheckToMove(originField, curr->curBlockID, rotate, y, x)==0){
-		if(y==-1)	gameOver=1;
-		}
-		else	continue;
+		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=recommend(curr);
@@ -724,6 +721,7 @@ for(i=0; i<HEIGHT; i++)
 		
 	}
 }	
+	if(recommendY==-1)	gameOver=1;
 	free(curr);
 	return max;
 }
