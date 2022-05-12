@@ -806,8 +806,8 @@ void recommendedPlay(){
 	move(HEIGHT/2,WIDTH/2-4);
 	printw("GameOver!!");
 	printw("\nTime: .2%lf", total);
-	printw("\nScore: .2%lf", score);
-	printw("\n.2%lf", score/total);
+	printw("\nScore: %d", score);
+	printw("\n.2%lf", (double)score/total);
 	refresh();
 	getch();
 	newRank(score);
