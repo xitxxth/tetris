@@ -706,7 +706,7 @@ for(i=0; i<HEIGHT; i++)
 		curr->recField[i][j] = originField[i][j];
 		y=0;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
-		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0){
+		if(!CheckToMove(originField, curr->curBlockID, rotate, y, x)==0){
 		if(y==0)	gameOver=1;
 		}
 		else	continue;
