@@ -721,7 +721,6 @@ for(i=0; i<HEIGHT; i++)
 		
 	}
 }	
-	if(recommendY==-1)	gameOver=1;
 	free(curr);
 	return max;
 }
