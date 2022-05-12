@@ -1,7 +1,7 @@
 ﻿#include "tetris.h"
 #include <stdlib.h>
 #include <stdio.h>
-//s	
+//ok
 static struct sigaction act, oact;
 int main(){
 	int exit=0;
