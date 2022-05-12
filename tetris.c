@@ -290,13 +290,20 @@ int CheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int bloc
 int MCheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int blockY, int blockX){
 	// user code
 	int i, j;
-	for(i=0; i<4; i++){
-		for(j=0; j<4; j++){
+	int pos_count=0;
+	int pos[4] = {0, 0, 0, 0};
+	for(i=3; i>=0; i--){
+		for(j=3; j>=0; j--){
 			if(block[currentBlock][blockRotate][i][j]==1){ //check if block exists(value==1)
 				if(i+blockY>=HEIGHT || j+blockX>=WIDTH || j+blockX<0)//does it break the rule?
 				return 0;
-				if(f[i+blockY][j+blockX]==1)//the target place is already filled with block
+				if(mfield[j+blockX]==i+blockY)//the target place is already filled with block
 				return 0;
+				if(pos[j]==0){
+					pos[j]=1;
+					pos_count++;
+				}
+					if(pos_count==3)	return 1;
 			}
 		}
 	}
@@ -464,6 +471,7 @@ int AddBlockToField(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int 
 		for(j=0; j<4; j++){
 			if(block[currentBlock][blockRotate][i][j]==1){//turn block
                 f[blockY+i][blockX+j] = 1;//into field
+				mfield[blockX+j]=blockY+i;
                 if(i + blockY + 1 == HEIGHT || f[blockY+i+1][blockX+j]==1) touched++;//Y_pos ==21 : the bottom of field
 				//if the block turns into field on the bottom, score += 10
             }
@@ -473,29 +481,6 @@ int AddBlockToField(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int 
 }
 
 int DeleteLine(char f[HEIGHT][WIDTH]){
-	// user code
-	int i, j, x, y, count = 0;
-	for(i=0; i<HEIGHT; i++){
-		for(j=0; j<WIDTH; j++){
-			if(f[i][j]==0)	break;
-		}
-		if(j==WIDTH){
-			count++;
-			for(y=i; y>0; y--){
-				for(x=0; x<WIDTH; x++){
-					f[y][x] = f[y-1][x];
-				}
-			}
-				for(j=0; j<WIDTH; j++)	f[0][j] = 0;
-		}
-	}
-	
-	return count*count*100;//as a pre_condition
-	//1. 필드를 탐색하여, 꽉 찬 구간이 있는지 탐색한다.
-	//2. 꽉 찬 구간이 있으면 해당 구간을 지운다. 즉, 해당 구간으로 필드값을 한칸씩 내린다.
-}
-
-int MDeleteLine(char f[HEIGHT][WIDTH]){
 	// user code
 	int i, j, x, y, count = 0;
 	for(i=0; i<HEIGHT; i++){
@@ -776,6 +761,143 @@ for(i=0; i<HEIGHT; i++)
 }
 //lv 0 complete
 //1. 전역변수 2. leaf point -> leaf
+
+int  Mrecommend(Leaf_pointer prev){
+start= time(NULL);
+int max=0, tmp;
+int acc_score;
+int rotate, x, y, i, j, lim;
+char originField[HEIGHT][WIDTH];
+Leaf_pointer curr = NULL;
+curr = (Leaf_pointer)malloc(sizeof(Leaf));
+if(prev==NULL){
+curr->level = 0;
+acc_score = 0;
+for(i=0; i<HEIGHT; i++)
+	for(j=0; j<WIDTH; j++)
+		originField[i][j] = field[i][j];
+}
+else{
+curr->level = prev->level + 1;
+acc_score = prev->accumulatedScore;
+for(i=0; i<HEIGHT; i++)
+	for(j=0; j<WIDTH; j++)
+		originField[i][j] = prev->recField[i][j];
+}
+curr->curBlockID = nextBlock[curr->level];
+
+	if(curr->curBlockID==4)	rotate=3;
+	else if(curr->curBlockID==0 || curr->curBlockID==5 || curr->curBlockID==6)	rotate=2;
+	else	rotate=0;
+//x, rotate값 세분화
+for(; rotate<4; rotate++){
+	if(curr->curBlockID==0){
+		if(rotate==2){
+			x=0;
+			lim=WIDTH-3;
+		}
+		else if(rotate==3){
+			x=-1;
+			lim=WIDTH-1;
+		}
+	}
+	else if(curr->curBlockID==1){
+		if(rotate==1){
+			x=-2;
+			lim=WIDTH-3;
+		}
+		else if(rotate==3){
+			x=-1;
+			lim=WIDTH-2;
+		}
+		else{
+			x=-1;
+			lim=WIDTH-3;
+		}
+	}
+	else if(curr->curBlockID==2){
+		if(rotate==1){
+			x=-2;
+			lim=WIDTH-3;
+		}
+		else if(rotate==3){
+			x=-1;
+			lim=WIDTH-2;
+		}
+		else{
+			x=-1;
+			lim=WIDTH-3;
+		}
+	}
+	else if(curr->curBlockID==3){
+		if(rotate==3){
+			x=-1;
+			lim=WIDTH-2;
+		}
+		else if(rotate==1){
+			x=0;
+			lim=WIDTH-1;
+		}
+		else{
+			x=0;
+			lim=WIDTH-2;
+		}
+	}
+	else if(curr->curBlockID==4){
+		x=-1;
+		lim=WIDTH-2;
+	}
+	else if(curr->curBlockID==5){
+		if(rotate==2){
+			x=-1;
+			lim=WIDTH-3;
+		}
+		else if(roate==3){
+			x=-1;
+			lim=WIDTH-2;
+		}
+	}
+	else if(curr->curBlockID==6){
+		if(rotate==2){
+			x=-1;
+			lim=WIDTH-3;
+		}
+		else{
+			x=-1;
+			lim=WIDTH-2;
+		}
+	}
+
+	for(; x<lim; x++){
+
+for(i=0; i<HEIGHT; i++)
+	for(j=0; j<WIDTH; j++)
+		curr->recField[i][j] = originField[i][j];
+		y=0;
+		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
+		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
+		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
+		curr->accumulatedScore += DeleteLine(curr->recField);
+		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=recommend(curr);
+		if(max < curr->accumulatedScore){//problem
+			max = curr->accumulatedScore;
+			if(curr->level==0){
+				recommendY = y;
+				recommendX = x;
+				recommendR = rotate;
+			}
+		}
+		
+	}
+}	
+	free(curr);
+	curr=NULL;
+	stop = time(NULL);
+	duration = (double)difftime(stop, start);
+	total += duration;
+	return max;
+}
+
 void recommendedPlay(){
 		int command;
 	clear();
