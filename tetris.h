@@ -41,6 +41,7 @@ typedef struct Leaf {
 int level;
 int accumulatedScore;
 char recField[HEIGHT][WIDTH];
+int condition;
 //optional element
 int curBlockID;
 } Leaf;
