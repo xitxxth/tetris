@@ -407,6 +407,7 @@ void RecBlockDown(int sig){//if get sig
 		usleep(INTERVAL);
 	}
 */
+DrawRecommend(recommendY, recommendX, nextBlock[0], recommendR);
 blockX=recommendX;
 blockY=recommendY;
 blockRotate=recommendR;
