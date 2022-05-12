@@ -898,6 +898,11 @@ void recommendedPlay(){
 			DrawBox(HEIGHT/2-1,WIDTH/2-5,1,10);
 			move(HEIGHT/2,WIDTH/2-4);
 			printw("Good-bye!!");
+			printw("\nScore: %d", score);
+			printw("\nTime: %lf", total);
+			printw("\nMemory: %ld", total_memory_usage);
+			printw("\n%lf", (double)score/total);
+			printw("\n%lf", (double)score/total_memory_usage);//print efficiency
 			refresh();
 			getch();
 
