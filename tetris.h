@@ -41,8 +41,8 @@ typedef struct Leaf {
 int level;
 int accumulatedScore;
 char recField[HEIGHT][WIDTH];
-int condition_height;
-int condition_x;
+int condition_height; //condition height(refining tree)
+int condition_x; //condition x(refining tree)
 //optional element
 int curBlockID;
 } Leaf;
@@ -159,7 +159,6 @@ int gameOver=0;			/* 게임이 종료되면 1로 setting된다.*/
 int timed_out;
 int recommendR,recommendY,recommendX; // 추천 블럭 배치 정보. 차례대로 회전, Y 좌표, X 좌표
 int size_rank=0;
-char mfield[WIDTH] = {21, 21, 21, 21, 21, 21, 21, 21, 21, 21};
 time_t start, stop;
 double total=0;
 double duration;
