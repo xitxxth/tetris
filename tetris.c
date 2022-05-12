@@ -293,7 +293,7 @@ int MCheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int blo
 	int pos_count=0;
 	int pos[4] = {0, 0, 0, 0};
 	for(i=3; i>=0; i--){
-		for(j=3; j>=0; j--){
+		for(j=0; j<4; j++){
 			if(block[currentBlock][blockRotate][i][j]==1){ //check if block exists(value==1)
 				if(i+blockY>=HEIGHT || j+blockX>=WIDTH || j+blockX<0)//does it break the rule?
 				return 0;
@@ -303,7 +303,7 @@ int MCheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int blo
 					pos[j]=1;
 					pos_count++;
 				}
-					if(pos_count==3)	return 1;
+					if(pos_count==4)	return 1;
 			}
 		}
 	}
