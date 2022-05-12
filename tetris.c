@@ -683,7 +683,8 @@ int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
 char originField[HEIGHT][WIDTH];
-Leaf_pointer curr = (Leaf_pointer)malloc(sizeof(Leaf));
+Leaf_pointer curr = NULL;
+curr = (Leaf_pointer)malloc(sizeof(Leaf));
 if(prev==NULL){
 curr->level = 0;
 acc_score = 0;
@@ -703,9 +704,9 @@ curr->curBlockID = nextBlock[curr->level];
 	if(curr->curBlockID==4)	rotate=3;
 	else if(curr->curBlockID==0 || curr->curBlockID==5 || curr->curBlockID==6)	rotate=2;
 	else	rotate=0;
-
+//x, rotate값 세분화
 for(rotate=0; rotate<4; rotate++){
-	for(x=-1; x<WIDTH; x++){
+	for(x=-2; x<WIDTH; x++){
 
 for(i=0; i<HEIGHT; i++)
 	for(j=0; j<WIDTH; j++)
