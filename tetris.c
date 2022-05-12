@@ -448,7 +448,7 @@ int AddBlockToField(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int 
 		for(j=0; j<4; j++){
 			if(block[currentBlock][blockRotate][i][j]==1){//turn block
                 f[blockY+i][blockX+j] = 1;//into field
-                if(i + blockY + 1 == HEIGHT || f[blockY+i+1][blockX+j]==1) {touched++;}//Y_pos ==21 : the bottom of field
+                if(i + blockY + 1 == HEIGHT || f[blockY+i+1][blockX+j]==1) touched++;//Y_pos ==21 : the bottom of field
 				//if the block turns into field on the bottom, score += 10
             }
 		}
@@ -470,10 +470,9 @@ int DeleteLine(char f[HEIGHT][WIDTH]){
 					f[y][x] = f[y-1][x];
 				}
 			}
+				for(j=0; j<WIDTH; j++)	f[0][j] = 0;
 		}
 	}
-	for(j=0; j<WIDTH; j++)	f[0][j] = 0;
-
 	
 	return count*count*100;//as a pre_condition
 	//1. 필드를 탐색하여, 꽉 찬 구간이 있는지 탐색한다.
