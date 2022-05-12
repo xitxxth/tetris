@@ -804,7 +804,10 @@ void recommendedPlay(){
 	getch();
 	DrawBox(HEIGHT/2-1,WIDTH/2-5,6,13);
 	move(HEIGHT/2,WIDTH/2-4);
-	printw("GameOver!!\nTime: %lf\nScore: %lf\n%lf", total, score, score/total);
+	printw("GameOver!!");
+	printw("\nTime: .2%lf", total);
+	printw("\nScore: .2%lf", score);
+	printw("\n.2%lf", score/total);
 	refresh();
 	getch();
 	newRank(score);
