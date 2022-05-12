@@ -287,6 +287,22 @@ int CheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int bloc
 	return 1;//can move
 }
 
+int MCheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int blockY, int blockX){
+	// user code
+	int i, j;
+	for(i=0; i<4; i++){
+		for(j=0; j<4; j++){
+			if(block[currentBlock][blockRotate][i][j]==1){ //check if block exists(value==1)
+				if(i+blockY>=HEIGHT || j+blockX>=WIDTH || j+blockX<0)//does it break the rule?
+				return 0;
+				if(f[i+blockY][j+blockX]==1)//the target place is already filled with block
+				return 0;
+			}
+		}
+	}
+	return 1;//can move
+}
+
 void DrawChange(char f[HEIGHT][WIDTH],int command,int currentBlock,int blockRotate, int blockY, int blockX){
 	// user code
 	int prevY = blockY, prevX = blockX, prevRot = blockRotate; //they represent the previous block's position
@@ -457,6 +473,29 @@ int AddBlockToField(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int 
 }
 
 int DeleteLine(char f[HEIGHT][WIDTH]){
+	// user code
+	int i, j, x, y, count = 0;
+	for(i=0; i<HEIGHT; i++){
+		for(j=0; j<WIDTH; j++){
+			if(f[i][j]==0)	break;
+		}
+		if(j==WIDTH){
+			count++;
+			for(y=i; y>0; y--){
+				for(x=0; x<WIDTH; x++){
+					f[y][x] = f[y-1][x];
+				}
+			}
+				for(j=0; j<WIDTH; j++)	f[0][j] = 0;
+		}
+	}
+	
+	return count*count*100;//as a pre_condition
+	//1. 필드를 탐색하여, 꽉 찬 구간이 있는지 탐색한다.
+	//2. 꽉 찬 구간이 있으면 해당 구간을 지운다. 즉, 해당 구간으로 필드값을 한칸씩 내린다.
+}
+
+int MDeleteLine(char f[HEIGHT][WIDTH]){
 	// user code
 	int i, j, x, y, count = 0;
 	for(i=0; i<HEIGHT; i++){
@@ -678,6 +717,7 @@ void DrawRecommend(int y, int x, int blockID,int blockRotate){
 }
 
 int  recommend(Leaf_pointer prev){
+start= time(NULL);
 int max=0, tmp;
 int acc_score;
 int rotate, x, y, i, j;
@@ -729,6 +769,9 @@ for(i=0; i<HEIGHT; i++)
 }	
 	free(curr);
 	curr=NULL;
+	stop = time(NULL);
+	duration = (double)difftime(stop, start);
+	total += duration;
 	return max;
 }
 //lv 0 complete
@@ -759,9 +802,9 @@ void recommendedPlay(){
 	}while(!gameOver);
 	alarm(0);
 	getch();
-	DrawBox(HEIGHT/2-1,WIDTH/2-5,1,10);
+	DrawBox(HEIGHT/2-1,WIDTH/2-5,6,13);
 	move(HEIGHT/2,WIDTH/2-4);
-	printw("GameOver!!");
+	printw("GameOver!!\nTime: %lf\nScore: %lf\n%lf", total, score, score/total);
 	refresh();
 	getch();
 	newRank(score);

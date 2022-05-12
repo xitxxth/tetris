@@ -157,6 +157,7 @@ int gameOver=0;			/* 게임이 종료되면 1로 setting된다.*/
 int timed_out;
 int recommendR,recommendY,recommendX; // 추천 블럭 배치 정보. 차례대로 회전, Y 좌표, X 좌표
 int size_rank=0;
+char mfield[WIDTH];
 Node_pointer HEAD = NULL;
 
 /***********************************************************
