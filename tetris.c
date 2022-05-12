@@ -874,8 +874,8 @@ for(i=0; i<HEIGHT; i++)
 	for(j=0; j<WIDTH; j++)
 		curr->recField[i][j] = originField[i][j];
 		y=0;
-		while(MCheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
-		if(MCheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
+		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
+		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=Mrecommend(curr);
