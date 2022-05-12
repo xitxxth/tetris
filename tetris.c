@@ -414,7 +414,7 @@ blockRotate=recommendR;
 	if(!CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
 		int i;
 		//gameover
-		if(blockY==0){ //!(check to move) && blockY==-1 -> game0ver 
+		if(blockY==-1){ //!(check to move) && blockY==-1 -> game0ver 
 			gameOver=1;
 		}
 		//add block
