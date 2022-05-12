@@ -511,6 +511,7 @@ void createRankList(){
 		newnode->link = NULL;
 		if(fscanf(fp, "%s %d\n", newnode->name, &newnode->point)==EOF){
 			free(newnode);
+			newnode=NULL;
 			break;
 		}
 		if(!HEAD){
@@ -590,6 +591,7 @@ void rank(){
 				}
 				prev->link = curr->link;
 				free(curr);
+				curr=NULL;
 				size_rank--;
 				printw("Rank delete complete\n");
 			}
@@ -598,6 +600,7 @@ void rank(){
 				curr = curr->link;
 				HEAD = curr;
 				free(prev);
+				prev=NULL;
 				size_rank--;
 				printw("Rank delete complete\n");
 			}
@@ -623,7 +626,10 @@ void writeRankFile(){
 		prev = curr;
 		fprintf(fp, "%s %d\n", curr->name, curr->point);
 		curr = curr->link;
-		if(prev!=NULL)	free(prev);
+		if(prev!=NULL){
+			free(prev);
+			prev=NULL;
+		}
 	}
 	if(fclose(fp)!=0){
 		printw("FILE CLOSE ERROR\n");
