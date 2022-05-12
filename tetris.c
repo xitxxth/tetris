@@ -734,6 +734,7 @@ total_memory_usage += sizeof(int)*5 + sizeof(char)*HEIGHT*WIDTH;//memory caclula
 if(prev==NULL){//level 0
 curr->level = 0;
 acc_score = 0;
+curr->condition_height=0;
 for(i=0; i<HEIGHT; i++)
 	for(j=0; j<WIDTH; j++)
 		originField[i][j] = field[i][j];
