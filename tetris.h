@@ -158,6 +158,9 @@ int timed_out;
 int recommendR,recommendY,recommendX; // 추천 블럭 배치 정보. 차례대로 회전, Y 좌표, X 좌표
 int size_rank=0;
 char mfield[WIDTH];
+time_t start, stop;
+time_t total=0;
+double duration;
 Node_pointer HEAD = NULL;
 
 /***********************************************************
