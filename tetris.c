@@ -342,12 +342,8 @@ void DrawChange(char f[HEIGHT][WIDTH],int command,int currentBlock,int blockRota
 void BlockDown(int sig){//if get sig
 	// user code
 	if(CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
-		while(CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){
-		blockY++;
-        DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
+        DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, ++blockY, blockX);//drop it
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
-		usleep(50000);
-		}
 	}
 	else{
 		int i;
@@ -381,7 +377,7 @@ return;//강의자료 p26-27의 플로우차트를 참고한다.
 
 void RecBlockDown(int sig){//if get sig
 	// user code
-	
+/*
 	while(blockRotate!=recommendR){
 		blockRotate++;
 		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
@@ -410,7 +406,10 @@ void RecBlockDown(int sig){//if get sig
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
 		usleep(INTERVAL);
 	}
-
+*/
+blockX=recommendX;
+blockY=recommendY;
+blockRotate=recommendR;
 	if(!CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
 		int i;
 		//gameover
