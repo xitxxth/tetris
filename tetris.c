@@ -407,14 +407,14 @@ void RecBlockDown(int sig){//if get sig
 		usleep(INTERVAL);
 	}
 */
-DrawRecommend(recommendY, recommendX, nextBlock[0], recommendR);
+
 blockX=recommendX;
 blockY=recommendY;
 blockRotate=recommendR;
 	if(!CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
 		int i;
 		//gameover
-		if(blockY==-1){ //!(check to move) && blockY==-1 -> game0ver 
+		if(blockY==0){ //!(check to move) && blockY==-1 -> game0ver 
 			gameOver=1;
 		}
 		//add block
@@ -432,10 +432,10 @@ blockRotate=recommendR;
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
 		recommend(NULL);
-		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
 		DrawField();//draw field
+		DrawRecommend(recommendY, recommendX, nextBlock[0], recommendR);
 	}
 	timed_out=0;//for next call(alarm call)
 return;//강의자료 p26-27의 플로우차트를 참고한다.
