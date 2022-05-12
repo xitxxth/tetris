@@ -897,6 +897,7 @@ void recommendedPlay(){
 			alarm(0);
 			DrawBox(HEIGHT/2-1,WIDTH/2-5,1,10);
 			move(HEIGHT/2,WIDTH/2-4);
+			clear();
 			printw("Good-bye!!");
 			printw("\nScore: %d", score);
 			printw("\nTime: %lf", total);
@@ -913,6 +914,7 @@ void recommendedPlay(){
 	getch();
 	DrawBox(HEIGHT/2-1,WIDTH/2-5,10,13);
 	move(HEIGHT/2,WIDTH/2-4);
+	clear();
 	printw("GameOver!!");
 	printw("\nScore: %d", score);
 	printw("\nTime: %lf", total);
