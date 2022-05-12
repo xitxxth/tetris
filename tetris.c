@@ -817,7 +817,7 @@ for(; rotate<4; rotate++){
 		else{
 			x=-1;
 			lim=WIDTH-3;
-			curr->condition_height2=2;
+			curr->condition_height=2;
 		}
 	}
 	else if(curr->curBlockID==2){
@@ -890,7 +890,7 @@ for(i=0; i<HEIGHT; i++)
 		y=0;
 		while(MCheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
 		if(MCheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
-		if(curr->level==VISIBLE_BLOCKS-1 && curr->condition_height>=VISIBLE_BLOCKS*2)	continue;
+		if(curr->level==VISIBLE_BLOCKS-1 && curr->condition_height>=VISIBLE_BLOCKS*3)	continue;
 		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=Mrecommend(curr);
