@@ -763,7 +763,7 @@ for(i=0; i<HEIGHT; i++)
 //lv 0 complete
 //1. 전역변수 2. leaf point -> leaf
 
-int Mrecommend(Leaf_pointer prev){
+int	Mrecommend(Leaf_pointer prev){
 start= time(NULL);
 int max=0, tmp;
 int acc_score;
