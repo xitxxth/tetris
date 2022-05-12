@@ -297,7 +297,7 @@ int MCheckToMove(char f[HEIGHT][WIDTH],int currentBlock,int blockRotate, int blo
 			if(block[currentBlock][blockRotate][i][j]==1){ //check if block exists(value==1)
 				if(i+blockY>=HEIGHT || j+blockX>=WIDTH || j+blockX<0)//does it break the rule?
 				return 0;
-				if(mfield[j+blockX]==i+blockY)//the target place is already filled with block
+				if(field[i+blockY][j+blockX]==1)//the target place is already filled with block
 				return 0;
 				if(pos[j]==0){
 					pos[j]=1;
@@ -890,8 +890,8 @@ for(i=0; i<HEIGHT; i++)
 	for(j=0; j<WIDTH; j++)
 		curr->recField[i][j] = originField[i][j];
 		y=0;
-		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
-		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
+		while(MCheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
+		if(MCheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
 		curr->accumulatedScore = acc_score;
 		adf=AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		if(condition>adf)	continue;
