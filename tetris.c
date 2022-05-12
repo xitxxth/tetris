@@ -454,7 +454,7 @@ blockRotate=recommendR;
 		blockY = -1; 
 		blockX = (WIDTH/2)-2;
 		blockRotate = 0;//make new block
-		Mrecommend(NULL);
+		recommend(NULL);
 		DrawNextBlock(nextBlock);//draw nextblock[1], [2]
 		//initialize current block location(drop end), Drawfield()
 		DrawField();//draw field
