@@ -764,7 +764,7 @@ for(i=0; i<HEIGHT; i++)
 
 int  Mrecommend(Leaf_pointer prev){
 start= time(NULL);
-int max=0, tmp;
+int max=0, tmp, condition, adf;
 int acc_score;
 int rotate, x, y, i, j, lim;
 char originField[HEIGHT][WIDTH];
@@ -795,59 +795,73 @@ for(; rotate<4; rotate++){
 		if(rotate==2){
 			x=0;
 			lim=WIDTH-3;
+			condition=20;
 		}
 		else if(rotate==3){
 			x=-1;
 			lim=WIDTH-1;
+			condition=0;
 		}
 	}
 	else if(curr->curBlockID==1){
 		if(rotate==1){
 			x=-2;
 			lim=WIDTH-3;
+			condition=10;
 		}
 		else if(rotate==3){
 			x=-1;
 			lim=WIDTH-2;
+			condition=0;
 		}
 		else{
 			x=-1;
 			lim=WIDTH-3;
+			condition=0;
 		}
 	}
 	else if(curr->curBlockID==2){
 		if(rotate==1){
 			x=-2;
 			lim=WIDTH-3;
+			condition=0;
 		}
 		else if(rotate==3){
 			x=-1;
 			lim=WIDTH-2;
+			condition=0;
 		}
 		else{
 			x=-1;
 			lim=WIDTH-3;
+			condition=0;
+			if(rotate==2)	condition=10;
 		}
 	}
 	else if(curr->curBlockID==3){
 		if(rotate==3){
 			x=-1;
 			lim=WIDTH-2;
+			condition=0;
 		}
 		else if(rotate==1){
 			x=0;
 			lim=WIDTH-1;
+			condition=0;
 		}
 		else{
 			x=0;
 			lim=WIDTH-2;
+			if(rotate==0)	condition=10;
 		}
 	}
 	else if(curr->curBlockID==4){
 		x=-1;
 		lim=WIDTH-2;
+		condition=0;
 	}
 	else if(curr->curBlockID==5){
+		condition=0;
 		if(rotate==2){
 			x=-1;
 			lim=WIDTH-3;
@@ -858,6 +872,7 @@ for(; rotate<4; rotate++){
 		}
 	}
 	else if(curr->curBlockID==6){
+		condition=0;
 		if(rotate==2){
 			x=-1;
 			lim=WIDTH-3;
@@ -876,7 +891,10 @@ for(i=0; i<HEIGHT; i++)
 		y=0;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
 		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
-		curr->accumulatedScore = acc_score + AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
+		curr->accumulatedScore = acc_score
+		adf=AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
+		if(condition>adf)	continue;
+		curr->accumulatedScore += condition;
 		curr->accumulatedScore += DeleteLine(curr->recField);
 		if(curr->level<VISIBLE_BLOCKS-1)	curr->accumulatedScore+=Mrecommend(curr);
 		if(max < curr->accumulatedScore){//problem
