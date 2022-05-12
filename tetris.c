@@ -795,7 +795,7 @@ for(; rotate<4; rotate++){
 		if(rotate==2){
 			x=0;
 			lim=WIDTH-3;
-			condition=20;
+			condition=10;
 		}
 		else if(rotate==3){
 			x=-1;
@@ -807,7 +807,7 @@ for(; rotate<4; rotate++){
 		if(rotate==1){
 			x=-2;
 			lim=WIDTH-3;
-			condition=10;
+			condition=0;
 		}
 		else if(rotate==3){
 			x=-1;
@@ -818,6 +818,7 @@ for(; rotate<4; rotate++){
 			x=-1;
 			lim=WIDTH-3;
 			condition=0;
+			if(rotate==2)	condition=10;
 		}
 	}
 	else if(curr->curBlockID==2){
@@ -891,7 +892,7 @@ for(i=0; i<HEIGHT; i++)
 		y=0;
 		while(CheckToMove(originField, curr->curBlockID, rotate, ++y, x)==1);	y--;
 		if(CheckToMove(originField, curr->curBlockID, rotate, y, x)==0)	continue;
-		curr->accumulatedScore = acc_score
+		curr->accumulatedScore = acc_score;
 		adf=AddBlockToField(curr->recField, curr->curBlockID, rotate, y, x);
 		if(condition>adf)	continue;
 		curr->accumulatedScore += condition;
