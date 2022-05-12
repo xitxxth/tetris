@@ -709,6 +709,7 @@ int rotate, x, y, i, j;
 char originField[HEIGHT][WIDTH];
 Leaf_pointer curr = NULL;
 curr = (Leaf_pointer)malloc(sizeof(Leaf));
+total_memory_usage += sizeof(int)*5 + sizeof(char)*HEIGHT*WIDTH;
 if(prev==NULL){
 curr->level = 0;
 acc_score = 0;
@@ -770,6 +771,7 @@ int rotate, x, y, i, j, lim;
 char originField[HEIGHT][WIDTH];
 Leaf_pointer curr = NULL;
 curr = (Leaf_pointer)malloc(sizeof(Leaf));
+total_memory_usage += sizeof(int)*5 + sizeof(char)*HEIGHT*WIDTH;
 if(prev==NULL){
 curr->level = 0;
 acc_score = 0;
@@ -915,6 +917,8 @@ for(i=0; i<HEIGHT; i++)
 
 void recommendedPlay(){
 		int command;
+	total=0;
+	total_memory_usage=0;
 	clear();
 	act.sa_handler = RecBlockDown;
 	sigaction(SIGALRM,&act,&oact);
@@ -939,12 +943,14 @@ void recommendedPlay(){
 	}while(!gameOver);
 	alarm(0);
 	getch();
-	DrawBox(HEIGHT/2-1,WIDTH/2-5,8,13);
+	DrawBox(HEIGHT/2-1,WIDTH/2-5,10,13);
 	move(HEIGHT/2,WIDTH/2-4);
 	printw("GameOver!!");
 	printw("\nScore: %d", score);
 	printw("\nTime: %lf", total);
+	prntw("\nMemory: %ld", total_memory_usage);
 	printw("\n%lf", (double)score/total);
+	printw("\n%lf", (double)score/total_memory_usage);
 	refresh();
 	getch();
 	newRank(score);

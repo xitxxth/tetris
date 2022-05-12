@@ -163,6 +163,7 @@ char mfield[WIDTH] = {21, 21, 21, 21, 21, 21, 21, 21, 21, 21};
 time_t start, stop;
 double total=0;
 double duration;
+int total_memory_usage=0;
 Node_pointer HEAD = NULL;
 
 /***********************************************************
