@@ -8,7 +8,7 @@
 #include <ncurses.h>
 #include <signal.h>
 #include <string.h>
-#include <windows.h>
+#include <unistd.h>
 
 #define WIDTH	10
 #define HEIGHT	22

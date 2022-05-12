@@ -382,14 +382,14 @@ void RecBlockDown(int sig){//if get sig
 		blockRotate++;
 		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
-		Sleep(50);
+		Sleep(0.05);
 	}
 	if(blockX>recommendX){
 		while(blockX!=recommendX){
 		blockX--;
 		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
-		Sleep(50);
+		Sleep(0.05);
 		}
 	}
 	else if(blockX<recommendX){
@@ -397,14 +397,14 @@ void RecBlockDown(int sig){//if get sig
 		blockX++;
 		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
-		Sleep(50);
+		Sleep(0.05);
 		}
 	}
 	while(blockY!=recommendY){
 		blockY++;
 		DrawChange(field, KEY_DOWN, nextBlock[0], blockRotate, blockY, blockX);//drop it
 		DrawBlockWithFeatures(blockY, blockX, nextBlock[0], blockRotate);//DB -> DBWF
-		Sleep(50);
+		Sleep(0.05);
 	}
 
 	if(!CheckToMove(field, nextBlock[0], blockRotate, blockY+1, blockX)){//can drop it?
